@@ -4,11 +4,13 @@ on:
   push:
     branches:
       - "main"
+  # Rebuild automatique (ici tous les jours à 3h du matin)
+  schedule:
+    - cron: "0 3 * * *"
   workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
-  # Image = ghcr.io/OWNER/REPO:tag
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
@@ -17,7 +19,7 @@ jobs:
 
     permissions:
       contents: read
-      packages: write   # nécessaire pour ghcr
+      packages: write
       id-token: write
 
     steps:
