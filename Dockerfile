@@ -37,9 +37,8 @@ WORKDIR /app
 COPY --from=builder /venv /venv
 COPY --from=builder /src /app
 
-# Crée un user non-root
-RUN useradd -m appuser && chown -R appuser:appuser /app
-USER appuser
+# (Plus de USER appuser ici : on reste root pour éviter les soucis de droits SQLite)
+# Si tu montes un volume sur /app, root aura les droits d’écriture dessus.
 
-# gunicorn en frontal (prod)
+# gunicorn en frontal (prod), lié à PYMUSIC_PORT
 CMD ["sh", "-c", "gunicorn -w 4 -b 0.0.0.0:${PYMUSIC_PORT} app:app"]
