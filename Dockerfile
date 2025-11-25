@@ -42,4 +42,4 @@ RUN useradd -m appuser && chown -R appuser:appuser /app
 USER appuser
 
 # gunicorn en frontal (prod)
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:${PYMUSIC_PORT}", "app:app"]
+CMD ["sh", "-c", "gunicorn -w 4 -b 0.0.0.0:${PYMUSIC_PORT} app:app"]
