@@ -1,5 +1,7 @@
 FROM python:3.12-slim
 
+ENV PORT=499
+
 # Logs non bufferisés
 ENV PYTHONUNBUFFERED=1
 
@@ -21,7 +23,7 @@ RUN git clone https://github.com/nicobo-crl/PyMusic .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # PyMusic écoute en interne sur 499
-EXPOSE 499
+EXPOSE ${PORT}
 
 # Démarrage de l'application
 CMD ["python", "app.py"]
