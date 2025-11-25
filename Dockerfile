@@ -6,7 +6,7 @@ ENV PYTHONUNBUFFERED=1 \
 
 # On a juste besoin de git pour cloner le dépôt
 RUN apt-get update \
- && apt-get install -y --no-install-recommends git \
+ && apt-get install -y --no-install-recommends git nodejs \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /src
