@@ -39,6 +39,7 @@ COPY --from=builder /src /app
 
 # (Plus de USER appuser ici : on reste root pour éviter les soucis de droits SQLite)
 # Si tu montes un volume sur /app, root aura les droits d’écriture dessus.
+RUN chmod 777 /app
 
 # gunicorn en frontal (prod), lié à PYMUSIC_PORT
 CMD ["sh", "-c", "gunicorn -w 4 -b 0.0.0.0:${PYMUSIC_PORT} app:app"]
